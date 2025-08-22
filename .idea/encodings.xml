@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/framework/framework-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework/framework-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework/framework-applicationcontracts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework/framework-applicationcontracts/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework/framework-utils/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework/framework-utils/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framework/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sample-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-httpapi/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-httpapi/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-servicecontracts/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-servicecontracts/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-shared/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/usermanagement/usermanagement-shared/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
