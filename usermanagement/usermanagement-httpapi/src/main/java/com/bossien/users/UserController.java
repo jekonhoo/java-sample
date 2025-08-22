@@ -5,50 +5,52 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequestMapping("users")
 @RestController
 @RequiredArgsConstructor
 public class UserController {
 
-	private final UserService userService;
+    private final UserService userService;
 
-	@GetMapping("")
-	public PagedResultDto<UserDto> getList(
-			UserGetListDto dto
-	) {
-		return userService.getList(dto);
-	}
+    @GetMapping("")
+    public PagedResultDto<UserDto> getList(
+            UserGetListDto dto
+    ) {
+        return userService.getList(dto);
+    }
 
-	@GetMapping("{id}")
-	public UserDto get(
-			@PathVariable String id
-	) {
-		return userService.get(id);
-	}
+    @GetMapping("{id}")
+    public UserDto get(
+            @PathVariable("id") UUID id
+    ) {
+        return userService.get(id);
+    }
 
-	@PostMapping("")
-	public UserDto create(
-			@RequestBody @Validated UserCreateUpdateDto dto
-	) {
-		return userService.create(dto);
-	}
+    @PostMapping("")
+    public UserDto create(
+            @RequestBody @Validated UserCreateUpdateDto dto
+    ) {
+        return userService.create(dto);
+    }
 
-	@PutMapping("{id}")
-	public UserDto update(
-			@PathVariable String id,
-			@RequestBody @Validated UserCreateUpdateDto dto
-	) {
-		return userService.update(
-				id,
-				dto
-		);
-	}
+    @PutMapping("{id}")
+    public UserDto update(
+            @PathVariable("id") UUID id,
+            @RequestBody @Validated UserCreateUpdateDto dto
+    ) {
+        return userService.update(
+                id,
+                dto
+        );
+    }
 
-	@DeleteMapping("{id}")
-	public void delete(
-			@PathVariable String id
-	) {
-		userService.delete(id);
-	}
+    @DeleteMapping("{id}")
+    public void delete(
+            @PathVariable("id") UUID id
+    ) {
+        userService.delete(id);
+    }
 
 }

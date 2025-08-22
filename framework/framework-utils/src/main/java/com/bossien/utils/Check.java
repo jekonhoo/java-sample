@@ -2,31 +2,57 @@ package com.bossien.utils;
 
 public class Check {
 
-	public static Object notNull(
-			Object obj
-	) {
-		if (obj == null) {
-			throw new IllegalArgumentException("obj can not be null");
-		}
+    public static Object notNull(
+            Object obj
+    ) {
+        if (obj == null) {
+            throw new IllegalArgumentException("obj can not be null");
+        }
 
-		return obj;
-	}
+        return obj;
+    }
 
-	public static Object notNull(
-			Object obj,
-			String parameterName
-	) {
-		try {
-			notNull(obj);
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(
-					parameterName + "can not be null",
-					e
-			);
-		}
+    public static String notNull(
+            String str
+    ) {
+        if (str == null) {
+            throw new IllegalArgumentException("obj can not be null");
+        }
 
-		return obj;
-	}
+        return str;
+    }
+
+    public static Object notNull(
+            Object obj,
+            String parameterName
+    ) {
+        try {
+            notNull(obj);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(
+                    parameterName + "can not be null",
+                    e
+            );
+        }
+
+        return obj;
+    }
+
+    public static String notNull(
+            String str,
+            String parameterName
+    ) {
+        try {
+            notNull(str);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(
+                    parameterName + "can not be null",
+                    e
+            );
+        }
+
+        return str;
+    }
 
 	public static String notNull(
 			String value,

@@ -7,13 +7,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Getter
 @Entity
 @Table(name = "users")
 public class User {
 
 	@Id
-	private String id;
+	private UUID id;
 	@Column(length = UserConsts.NAME_MAX_LENGTH)
 	private String name;
 	@Column(length = UserConsts.PHONE_NUMBER_MAX_LENGTH)
@@ -26,14 +28,22 @@ public class User {
 	}
 
 	protected User(
+            UUID id,
 			String name,
 			String phoneNumber,
 			String email
 	) {
+        setId(id);
 		setName(name);
 		setPhoneNumber(phoneNumber);
 		setEmail(email);
 	}
+
+    private void setId(
+            UUID id
+    ){
+        this.id = id;
+    }
 
 	protected void setName(
 			String name

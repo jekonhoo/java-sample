@@ -6,8 +6,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.UUID;
+
 @Service
-public class UserServiceImpl extends CrudAppServiceImpl<User, String, UserDto, UserCreateUpdateDto, UserGetListDto> implements UserService {
+public class UserServiceImpl extends CrudAppServiceImpl<User, UUID, UserDto, UserCreateUpdateDto, UserGetListDto> implements UserService {
 
 
 	private final UserManager manager;
@@ -34,7 +36,7 @@ public class UserServiceImpl extends CrudAppServiceImpl<User, String, UserDto, U
 
 	@Override
 	public UserDto update(
-			String id,
+			UUID id,
 			UserCreateUpdateDto dto
 	) throws BusinessException {
 		User entity = repository.findById(id).orElse(null);

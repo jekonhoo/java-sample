@@ -2,7 +2,9 @@ package com.bossien.users;
 
 import com.bossien.application.services.CrudAppService;
 
-public interface UserService extends CrudAppService<UserDto, String, UserCreateUpdateDto, UserGetListDto> {
+import java.util.UUID;
+
+public interface UserService extends CrudAppService<UserDto, UUID, UserCreateUpdateDto, UserGetListDto> {
 	UserDto create(
 			UserCreateUpdateDto dto
 	);
