@@ -14,12 +14,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Slf4j
 public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUpdateDto, TGetListDto>
 		implements CreateUpdateAppService<TGetOutputDto, TKey, TCreateUpdateDto>,
 				           ReadOnlyAppService<TGetOutputDto, TKey, TGetListDto>,
@@ -40,7 +37,6 @@ public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUp
 
 		Pageable pageable = toPageable(dto);
 		pageable = applySorting(pageable, dto);
-		log.info(pageable.toString());
 
 		Page<TEntity> pageOfEntities = repository.findAll(pageable);
 

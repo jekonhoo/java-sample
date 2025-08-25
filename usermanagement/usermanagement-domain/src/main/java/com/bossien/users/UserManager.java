@@ -3,12 +3,12 @@ package com.bossien.users;
 import com.bossien.utils.Check;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
 import java.util.UUID;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class UserManager {
 
