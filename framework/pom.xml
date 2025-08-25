@@ -12,6 +12,7 @@
         <module>framework-utils</module>
         <module>framework-applicationcontracts</module>
         <module>framework-application</module>
+        <module>framework-web</module>
     </modules>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

@@ -1,13 +1,21 @@
 package com.bossien.application.services;
 
 
+import com.bossien.application.dtos.IPagedResultRequest;
+import com.bossien.application.dtos.ISortedResultRequest;
+import com.bossien.application.dtos.LimitedResultRequestDto;
 import com.bossien.application.dtos.PagedResultDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUpdateDto, TGetListDto>
 		implements CreateUpdateAppService<TGetOutputDto, TKey, TCreateUpdateDto>,
@@ -26,15 +34,16 @@ public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUp
 	public PagedResultDto<TGetOutputDto> getList(
 			TGetListDto dto
 	) {
-		long totalCount = repository.count();
-		List<TGetOutputDto> dtos = new ArrayList<>();
-		if (totalCount > 0) {
-			List<TEntity> entities = repository.findAll();
-			dtos = mapToDtos(entities);
-		}
+
+		Pageable pageable = toPageable(dto);
+		pageable = applySorting(pageable, dto);
+
+		Page<TEntity> pageOfEntities = repository.findAll(pageable);
+
+		List<TGetOutputDto> dtos = mapToDtos(pageOfEntities.getContent());
 
 		return new PagedResultDto<>(
-				totalCount,
+				pageOfEntities.getTotalElements(),
 				dtos
 		);
 	}
@@ -44,6 +53,11 @@ public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUp
 			TKey id
 	) {
 		TEntity entity = repository.findById(id).orElse(null);
+		if (ObjectUtils.isEmpty(entity)) {
+//			throw new EntityNotFoundException(id);
+			return null;
+		}
+
 		return mapToDto(entity);
 	}
 
@@ -78,6 +92,46 @@ public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUp
 			TKey id
 	) {
 		return repository.findById(id).orElse(null);
+	}
+
+	protected Pageable toPageable(
+			TGetListDto dto
+	) {
+		PageRequest pageable;
+
+		if (dto instanceof IPagedResultRequest pagingDto) {
+			pageable = PageRequest.of(
+					pagingDto.getSkipCount() / pagingDto.getMaxResultCount(),
+					pagingDto.getMaxResultCount()
+			);
+		} else {
+			pageable = PageRequest.of(
+					1,
+					LimitedResultRequestDto.DEFAULT_MAX_RESULT_COUNT
+			);
+		}
+
+		return pageable;
+	}
+
+	protected Pageable applySorting(
+			Pageable pageable,
+			TGetListDto dto
+	) {
+
+		if (dto instanceof ISortedResultRequest sortingDto) {
+			if (StringUtils.hasText(sortingDto.getSorting())) {
+				pageable = ((PageRequest) pageable).withSort(
+						Sort.by(sortingDto.getSorting())
+				);
+			} else {
+				pageable = ((PageRequest) pageable).withSort(
+						Sort.by("id")
+				);
+			}
+		}
+
+		return pageable;
 	}
 
 	protected abstract TEntity mapToEntity(

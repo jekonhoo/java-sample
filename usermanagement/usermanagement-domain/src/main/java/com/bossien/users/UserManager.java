@@ -2,74 +2,86 @@ package com.bossien.users;
 
 import com.bossien.utils.Check;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
 import java.util.UUID;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class UserManager {
 
-    private final UserRepository repository;
+	private final UserRepository repository;
+	private final ApplicationEventPublisher eventPublisher;
 
-    public User create(
-            String name,
-            String phoneNumber,
-            String email
-    ) throws UserAlreadyExistingException {
+	public User create(
+			String name,
+			String phoneNumber,
+			String email
+	) throws UserAlreadyExistingException {
 
-        User existing = repository.findByName(name);
-        if (!ObjectUtils.isEmpty(existing)) {
-            throw new UserAlreadyExistingException(
-                    name
-            );
-        }
+		User existing = repository.findByName(name);
+		if (!ObjectUtils.isEmpty(existing)) {
+			throw new UserAlreadyExistingException(
+					name
+			);
+		}
 
-        return new User(
-                UUID.randomUUID(),
-                name,
-                phoneNumber,
-                email
-        );
-    }
+		User entity = new User(
+				UUID.randomUUID(),
+				name,
+				phoneNumber,
+				email
+		);
 
-    public User changeName(
-            User entity,
-            String name
-    ) throws UserAlreadyExistingException {
+		eventPublisher.publishEvent(
+				new UserCreatedEvent(
+						this,
+						entity.getId(),
+						entity.getName()
+				)
+		);
 
-        User existing = repository.findByName(name);
-        if (!ObjectUtils.isEmpty(existing) && !existing.getId().equals(entity.getId())) {
-            throw new UserAlreadyExistingException(
-                    name
-            );
-        }
+		return entity;
+	}
 
-        Check.notNull(entity, "entity");
+	public User changeName(
+			User entity,
+			String name
+	) throws UserAlreadyExistingException {
 
-        entity.setName(name);
+		User existing = repository.findByName(name);
+		if (!ObjectUtils.isEmpty(existing) && !existing.getId().equals(entity.getId())) {
+			throw new UserAlreadyExistingException(
+					name
+			);
+		}
 
-        return entity;
-    }
+		Check.notNull(entity, "entity");
 
-    public User changePhoneNumber(
-            User entity,
-            String phoneNumber
-    ) {
-        Check.notNull(entity);
-        entity.setPhoneNumber(phoneNumber);
+		entity.setName(name);
 
-        return entity;
-    }
+		return entity;
+	}
 
-    public User changeEmail(
-            User entity,
-            String email
-    ) {
-        Check.notNull(entity);
-        entity.setEmail(email);
+	public User changePhoneNumber(
+			User entity,
+			String phoneNumber
+	) {
+		Check.notNull(entity);
+		entity.setPhoneNumber(phoneNumber);
 
-        return entity;
-    }
+		return entity;
+	}
+
+	public User changeEmail(
+			User entity,
+			String email
+	) {
+		Check.notNull(entity);
+		entity.setEmail(email);
+
+		return entity;
+	}
 }

@@ -5,6 +5,10 @@ import lombok.Data;
 @Data
 public class LimitedResultRequestDto implements ILimitedResultRequest {
 
-	private int maxResultCount;
+	public static int DEFAULT_MAX_RESULT_COUNT = 10;
+
+	public static int MAX_MAX_RESULT_COUNT = 1000;
+
+	private int maxResultCount = 10;
 
 }
