@@ -1,4 +1,6 @@
 package com.bossien.users;
 
-public class UserGetListDto {
+import com.bossien.application.dtos.PagedAndSortedResultRequestDto;
+
+public class UserGetListDto extends PagedAndSortedResultRequestDto {
 }
