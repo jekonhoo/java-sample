@@ -1,10 +1,11 @@
 package com.bossien.application.services;
 
 
-import com.bossien.application.dtos.*;
+import com.bossien.application.dtos.IPagedResultRequest;
+import com.bossien.application.dtos.ISortedResultRequest;
+import com.bossien.application.dtos.LimitedResultRequestDto;
+import com.bossien.application.dtos.PagedResultDto;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -100,11 +101,9 @@ public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUp
 	protected Pageable toPageable(
 			TGetListDto dto
 	) {
-
-		PagedAndSortedResultRequestDto pagingDto = (PagedAndSortedResultRequestDto) dto;
 		PageRequest pageable;
 
-		if (dto instanceof IPagedResultRequest paingDto) {
+		if (dto instanceof IPagedResultRequest pagingDto) {
 			pageable = PageRequest.of(
 					pagingDto.getSkipCount() / pagingDto.getMaxResultCount(),
 					pagingDto.getMaxResultCount()
@@ -126,12 +125,14 @@ public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUp
 
 		if (dto instanceof ISortedResultRequest sortingDto) {
 			if (StringUtils.hasText(sortingDto.getSorting())) {
-				Sort.by(sortingDto.getSorting());
+				pageable = ((PageRequest) pageable).withSort(
+						Sort.by(sortingDto.getSorting())
+				);
+			} else {
+				pageable = ((PageRequest) pageable).withSort(
+						Sort.by("id")
+				);
 			}
-		} else {
-			((PageRequest) pageable).withSort(
-					Sort.by("id")
-			);
 		}
 
 		return pageable;
