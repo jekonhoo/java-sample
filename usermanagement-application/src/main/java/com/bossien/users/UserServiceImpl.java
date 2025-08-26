@@ -49,6 +49,7 @@ public class UserServiceImpl extends CrudAppServiceImpl<User, UUID, UserDto, Use
         manager.changeName(entity, dto.getName());
         manager.changePhoneNumber(entity, dto.getPhoneNumber());
         manager.changeEmail(entity, dto.getEmail());
+        entity.setLastModificationTime(new Date());
         repository.save(entity);
 
         return mapToDto(entity);
