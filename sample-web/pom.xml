@@ -59,15 +59,18 @@
         </dependency>
         <dependency>
             <groupId>com.bossien</groupId>
-            <artifactId>usermanagement-httpapi</artifactId>
+            <artifactId>framework-web</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.bossien</groupId>
-            <artifactId>framework-web</artifactId>
+            <artifactId>usermanagement-httpapi</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.bossien</groupId>
+            <artifactId>usermanagement-application</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

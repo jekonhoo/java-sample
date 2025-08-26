@@ -7,7 +7,33 @@
         <option value="$PROJECT_DIR$/sample-web/pom.xml" />
         <option value="$PROJECT_DIR$/usermanagement/pom.xml" />
         <option value="$PROJECT_DIR$/framework/pom.xml" />
+        <option value="$PROJECT_DIR$/framework-core/pom.xml" />
+        <option value="$PROJECT_DIR$/framework-applicationcontracts/pom.xml" />
+        <option value="$PROJECT_DIR$/framework-application/pom.xml" />
+        <option value="$PROJECT_DIR$/framework-web/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanager-shared/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement-applicationcontracts/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement-shared/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement-application/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement-httpapi/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/framework-applicationcontracts/framework-application/pom.xml" />
+        <option value="$PROJECT_DIR$/framework/framework-application/pom.xml" />
+        <option value="$PROJECT_DIR$/framework/framework-applicationcontracts/pom.xml" />
+        <option value="$PROJECT_DIR$/framework/framework-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/framework/framework-web/pom.xml" />
+        <option value="$PROJECT_DIR$/framework/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement/usermanagement-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement/usermanagement-httpapi/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement/usermanagement-service/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement/usermanagement-servicecontracts/pom.xml" />
+        <option value="$PROJECT_DIR$/usermanagement/usermanagement-shared/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="21" project-jdk-type="JavaSDK">
