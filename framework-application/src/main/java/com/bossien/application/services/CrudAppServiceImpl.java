@@ -5,6 +5,7 @@ import com.bossien.application.dtos.IPagedResultRequest;
 import com.bossien.application.dtos.ISortedResultRequest;
 import com.bossien.application.dtos.LimitedResultRequestDto;
 import com.bossien.application.dtos.PagedResultDto;
+import com.bossien.core.EntityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUpdateDto, TGetListDto>
@@ -66,6 +68,7 @@ public abstract class CrudAppServiceImpl<TEntity, TKey, TGetOutputDto, TCreateUp
 			TCreateUpdateDto dto
 	) {
 		TEntity entity = mapToEntity(dto);
+		EntityUtils.setValue(entity, "setCreationTime", new Date());
 		repository.save(entity);
 		return mapToDto(entity);
 	}
