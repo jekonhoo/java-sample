@@ -17,6 +17,9 @@
         <option value="$PROJECT_DIR$/usermanagement-shared/pom.xml" />
         <option value="$PROJECT_DIR$/usermanagement-application/pom.xml" />
         <option value="$PROJECT_DIR$/usermanagement-httpapi/pom.xml" />
+        <option value="$PROJECT_DIR$/framework-applicationdomain/pom.xml" />
+        <option value="$PROJECT_DIR$/framework-auditingcontracts/pom.xml" />
+        <option value="$PROJECT_DIR$/springcloudbus/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

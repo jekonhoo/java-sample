@@ -16,15 +16,17 @@
         <module name="framework-application" />
         <module name="usermanagement-domain" />
         <module name="usermanagement-shared" />
+        <module name="framework-applicationdomain" />
+        <module name="framework-auditingcontracts" />
       </profile>
-      <profile name="Annotation profile for sample-web" enabled="true">
+      <profile name="Annotation profile for springcloudbus" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
+        <module name="springcloudbus" />
         <module name="sample-web" />
       </profile>
     </annotationProcessing>
@@ -39,6 +41,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="sample-web" options="-parameters" />
+      <module name="springcloudbus" options="-parameters" />
     </option>
   </component>
 </project>
