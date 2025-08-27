@@ -7,7 +7,7 @@ import org.springframework.cloud.bus.event.RemoteApplicationEvent;
 public class UserCreatedEvent extends RemoteApplicationEvent {
     private String name;
 
-    public UserCreatedEvent(Object source, String name) {
+    public UserCreatedEvent(String name) {
         setName(name);
     }
 }
